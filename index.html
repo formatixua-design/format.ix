@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FORMAT IX — Навчання графічного дизайну: Photoshop, Illustrator, Figma</title>
 
-  <!-- Favicon з точним логотипом IX -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2308080a'/%3E%3Cpath d='M22 18 h20 v20 h-20 z M22 46 l20 -10 v46 h-20 z M44 82 l24 -36 h22 l-26 36 l28 36 h-22 l-16 -23 l-10 13 v10 h-20 l20 -36 z' fill='%23ccff00'/%3E%3C/svg%3E">
-
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -120,7 +117,6 @@
       animation-play-state: paused;
     }
 
-    /* Стилізація скролбарів */
     ::-webkit-scrollbar {
       width: 7px;
       height: 6px;
@@ -156,7 +152,6 @@
 </head>
 <body class="antialiased selection:bg-brandLime selection:text-black">
 
-  <!-- Dynamic Cursor Elements -->
   <div id="studio-cursor-dot"></div>
   <div id="studio-cursor-ring"></div>
   <canvas id="ambientCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
@@ -165,21 +160,15 @@
   <header class="sticky top-0 z-50 w-full glass-header border-b border-brandBorder h-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
       
-      <!-- Brand Logo з точним вектором ix -->
-      <a href="#" class="flex items-center gap-3 shrink-0 group">
-        <div class="h-9 w-auto text-brandLime transition-transform group-hover:scale-105">
-          <svg class="h-full w-auto fill-current" viewBox="0 0 100 80">
-            <!-- i: квадратна крапка і вертикальний зрізаний стовпчик -->
-            <rect x="10" y="2" width="20" height="20"/>
-            <polygon points="10,32 30,22 30,78 10,78"/>
-            <!-- x: характерне перехрестя зі зсувом -->
-            <polygon points="32,78 54,42 74,78 96,78 68,36 94,2 72,2 52,38 32,2 32,24 44,42 32,60"/>
-          </svg>
-        </div>
-        <span class="font-heading font-black text-2xl tracking-tight text-white group-hover:text-neutral-200 transition-colors">
+      <!-- Повернутий оригінальний текстовий логотип -->
+      <a href="#" class="flex items-center gap-1.5 shrink-0 group">
+        <span class="font-heading font-black text-2xl sm:text-3xl tracking-tight text-white group-hover:text-neutral-200 transition-colors">
           format
         </span>
-        <span class="hidden md:inline-block ml-1 px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-white/5 border border-white/10 text-neutral-400">
+        <span class="font-heading font-black text-2xl sm:text-3xl text-brandLime transition-transform group-hover:scale-105">
+          ix
+        </span>
+        <span class="hidden md:inline-block ml-3 px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-white/5 border border-white/10 text-neutral-400">
           DESIGN SCHOOL
         </span>
       </a>
@@ -556,7 +545,7 @@
     </div>
   </section>
 
-  <!-- SECTION: REVIEWS (СЛАЙДЕР З 8 ВІДГУКАМИ ТА ГОРТАННЯМ В БІК) -->
+  <!-- SECTION: REVIEWS (СЛАЙДЕР З ГОРТАННЯМ) -->
   <section id="reviews" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-brandBorder">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
       <div>
@@ -568,7 +557,6 @@
         </h2>
       </div>
 
-      <!-- Кнопки керування слайдером -->
       <div class="flex items-center gap-3">
         <button onclick="scrollReviews('left')" class="w-12 h-12 rounded-2xl bg-brandSurface border border-white/10 hover:border-brandLime text-white hover:text-brandLime flex items-center justify-center transition-all">
           ←
@@ -579,7 +567,7 @@
       </div>
     </div>
 
-    <!-- Scroll Container -->
+    <!-- Scroll Track -->
     <div id="reviewsTrack" class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-6 pt-2">
       
       <!-- Review 1 -->
@@ -633,7 +621,7 @@
         </div>
       </div>
 
-      <!-- Review 4 (New) -->
+      <!-- Review 4 -->
       <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
         <div class="space-y-2">
           <div class="flex items-center justify-between text-xs">
@@ -650,7 +638,7 @@
         </div>
       </div>
 
-      <!-- Review 5 (New) -->
+      <!-- Review 5 -->
       <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
         <div class="space-y-2">
           <div class="flex items-center justify-between text-xs">
@@ -667,7 +655,7 @@
         </div>
       </div>
 
-      <!-- Review 6 (New) -->
+      <!-- Review 6 -->
       <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
         <div class="space-y-2">
           <div class="flex items-center justify-between text-xs">
@@ -684,7 +672,7 @@
         </div>
       </div>
 
-      <!-- Review 7 (New) -->
+      <!-- Review 7 -->
       <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
         <div class="space-y-2">
           <div class="flex items-center justify-between text-xs">
@@ -701,7 +689,7 @@
         </div>
       </div>
 
-      <!-- Review 8 (New) -->
+      <!-- Review 8 -->
       <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
         <div class="space-y-2">
           <div class="flex items-center justify-between text-xs">
@@ -790,16 +778,10 @@
   <footer class="border-t border-brandBorder bg-black py-10 px-4 sm:px-6 lg:px-8 relative z-10 text-neutral-500 text-xs">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       
-      <!-- Logo Footer -->
-      <div class="flex items-center gap-3">
-        <div class="h-6 w-auto text-brandLime">
-          <svg class="h-full w-auto fill-current" viewBox="0 0 100 80">
-            <rect x="10" y="2" width="20" height="20"/>
-            <polygon points="10,32 30,22 30,78 10,78"/>
-            <polygon points="32,78 54,42 74,78 96,78 68,36 94,2 72,2 52,38 32,2 32,24 44,42 32,60"/>
-          </svg>
-        </div>
+      <!-- Logo Footer оригінальний -->
+      <div class="flex items-center gap-1.5">
         <span class="font-heading font-black text-xl text-white">format</span>
+        <span class="font-heading font-black text-xl text-brandLime">ix</span>
         <span class="text-[11px] text-neutral-600 ml-2">© 2026. НАВЧАННЯ ГРАФІЧНОГО ДИЗАЙНУ.</span>
       </div>
 
@@ -853,7 +835,7 @@
     </div>
   </div>
 
-  <!-- MODAL: INTERACTIVE CASES (З ЛОГОТИПОМ У ВЕРХНЬОМУ БАРІ) -->
+  <!-- MODAL: INTERACTIVE CASES -->
   <div id="interactiveCaseModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
     <div class="bg-brandDark border border-brandLime/60 rounded-2xl sm:rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl lime-glow">
       
@@ -865,17 +847,7 @@
           <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
         </div>
 
-        <!-- Центральна плашка URL з логотипом ix -->
-        <div class="px-4 py-1.5 rounded-lg bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-400 flex items-center gap-2.5">
-          <!-- Логотип ix у браузерному рядку -->
-          <div class="h-3.5 w-auto text-brandLime shrink-0">
-            <svg class="h-full w-auto fill-current" viewBox="0 0 100 80">
-              <rect x="10" y="2" width="20" height="20"/>
-              <polygon points="10,32 30,22 30,78 10,78"/>
-              <polygon points="32,78 54,42 74,78 96,78 68,36 94,2 72,2 52,38 32,2 32,24 44,42 32,60"/>
-            </svg>
-          </div>
-          <span class="text-neutral-500">|</span>
+        <div class="px-4 py-1 rounded-lg bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-400 flex items-center gap-2">
           <span class="text-brandLime font-bold">🔒 https://</span>
           <span id="caseBrowserUrl" class="text-white">case.format-ix.local</span>
         </div>
@@ -1465,10 +1437,9 @@
       const pkg = document.getElementById('contactPackageSelect').value;
       const comment = document.getElementById('contactComment').value.trim();
 
-      // Очищуємо цифри для перевірки
       const digitsOnly = phone.replace(/\D/g, '');
 
-      // Перевірка: якщо номер не введено, залишився лише +380 або менше 10 цифр
+      // Перевірка наявності номера
       if (!phone || phone === '+380' || digitsOnly.length < 10) {
         phoneInput.classList.remove('border-white/10');
         phoneInput.classList.add('border-red-500', 'bg-red-950/20');
@@ -1478,7 +1449,6 @@
         return;
       }
 
-      // Якщо номер введено коректно — знімаємо червоні рамки
       phoneInput.classList.remove('border-red-500', 'bg-red-950/20');
       phoneInput.classList.add('border-white/10');
       phoneErrorHint.classList.add('hidden');
