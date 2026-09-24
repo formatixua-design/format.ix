@@ -1251,15 +1251,32 @@
       });
     }
 
+    /* TELEGRAM INTEGRATION */
+    const TELEGRAM_BOT_TOKEN = "8719278603:AAHiGhP8nn_wlQC3Rd5E3hwjC26n0Ktlcpc";
+    const TELEGRAM_CHAT_ID = "5187113490";
+
     async function handleContactSubmit(e) {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBtn');
       const name = document.getElementById('contactName').value.trim();
       const phone = document.getElementById('contactPhone').value.trim();
       const pkg = document.getElementById('contactPackageSelect').value;
+      const comment = document.getElementById('contactComment').value.trim();
 
       submitBtn.disabled = true;
       submitBtn.innerText = "Відправка...";
+
+      const text = `⚡ *Нова заявка на курс Format IX!*%0A%0A` +
+                   `👤 *Ім'я:* ${encodeURIComponent(name)}%0A` +
+                   `📞 *Телефон/ТГ:* ${encodeURIComponent(phone)}%0A` +
+                   `🎯 *Пакет:* ${encodeURIComponent(pkg)}%0A` +
+                   `💬 *Коментар:* ${encodeURIComponent(comment || '—')}`;
+
+      try {
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${text}&parse_mode=Markdown`);
+      } catch (err) {
+        console.warn('Помилка відправки в Telegram:', err);
+      }
 
       showToast(`⚡ Дякуємо, ${name}! Заявку прийнято.`);
       e.target.reset();
