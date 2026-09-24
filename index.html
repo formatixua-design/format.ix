@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FORMAT IX — Навчання графічного дизайну: Photoshop, Illustrator, Figma</title>
 
+  <!-- Favicon з точним логотипом IX -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2308080a'/%3E%3Cpath d='M22 18 h20 v20 h-20 z M22 46 l20 -10 v46 h-20 z M44 82 l24 -36 h22 l-26 36 l28 36 h-22 l-16 -23 l-10 13 v10 h-20 l20 -36 z' fill='%23ccff00'/%3E%3C/svg%3E">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -117,8 +120,10 @@
       animation-play-state: paused;
     }
 
+    /* Стилізація скролбарів */
     ::-webkit-scrollbar {
       width: 7px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #08080a;
@@ -129,6 +134,14 @@
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #ccff00;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     html { scroll-padding-top: 84px; }
@@ -143,6 +156,7 @@
 </head>
 <body class="antialiased selection:bg-brandLime selection:text-black">
 
+  <!-- Dynamic Cursor Elements -->
   <div id="studio-cursor-dot"></div>
   <div id="studio-cursor-ring"></div>
   <canvas id="ambientCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
@@ -150,12 +164,27 @@
   <!-- HEADER -->
   <header class="sticky top-0 z-50 w-full glass-header border-b border-brandBorder h-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-      <a href="#" class="flex items-center gap-1.5 shrink-0 group">
-        <span class="font-heading font-black text-2xl sm:text-3xl tracking-tight text-white group-hover:text-neutral-200 transition-colors">format</span>
-        <span class="font-heading font-black text-2xl sm:text-3xl text-brandLime transition-transform group-hover:scale-105">ix</span>
-        <span class="hidden md:inline-block ml-3 px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-white/5 border border-white/10 text-neutral-400">DESIGN SCHOOL</span>
+      
+      <!-- Brand Logo з точним вектором ix -->
+      <a href="#" class="flex items-center gap-3 shrink-0 group">
+        <div class="h-9 w-auto text-brandLime transition-transform group-hover:scale-105">
+          <svg class="h-full w-auto fill-current" viewBox="0 0 100 80">
+            <!-- i: квадратна крапка і вертикальний зрізаний стовпчик -->
+            <rect x="10" y="2" width="20" height="20"/>
+            <polygon points="10,32 30,22 30,78 10,78"/>
+            <!-- x: характерне перехрестя зі зсувом -->
+            <polygon points="32,78 54,42 74,78 96,78 68,36 94,2 72,2 52,38 32,2 32,24 44,42 32,60"/>
+          </svg>
+        </div>
+        <span class="font-heading font-black text-2xl tracking-tight text-white group-hover:text-neutral-200 transition-colors">
+          format
+        </span>
+        <span class="hidden md:inline-block ml-1 px-2 py-0.5 text-[10px] font-mono uppercase rounded bg-white/5 border border-white/10 text-neutral-400">
+          DESIGN SCHOOL
+        </span>
       </a>
 
+      <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-neutral-300">
         <a href="#about" class="hover:text-brandLime transition-colors">Про навчання</a>
         <a href="#courses" class="hover:text-brandLime transition-colors">Пакети & Ціни</a>
@@ -164,6 +193,7 @@
         <a href="#contacts" class="hover:text-brandLime transition-colors">Контакти</a>
       </nav>
 
+      <!-- Action -->
       <div class="flex items-center gap-3 shrink-0">
         <a href="tel:+380676665823" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brandLime text-black font-heading font-bold text-xs uppercase tracking-wide hover:bg-white hover:shadow-[0_0_20px_#ccff00] transition-all">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
@@ -175,6 +205,7 @@
       </div>
     </div>
 
+    <!-- Mobile Dropdown -->
     <div id="mobileMenu" class="hidden lg:hidden bg-brandDark/95 border-b border-brandBorder px-6 py-6 space-y-4">
       <a href="#about" onclick="toggleMobileMenu()" class="block text-sm font-medium text-neutral-300 hover:text-brandLime">Про навчання</a>
       <a href="#courses" onclick="toggleMobileMenu()" class="block text-sm font-medium text-neutral-300 hover:text-brandLime">Пакети & Ціни</a>
@@ -382,7 +413,7 @@
         </h2>
       </div>
       <p class="text-neutral-400 text-xs sm:text-sm max-w-md">
-        Натискайте <strong class="text-white">«Відкрити сайт»</strong> — кожен кейс відкривається як інтерактивний міні-сайт у модальному вікні.
+        Натискайте <strong class="text-white">«Відкрити сайт»</strong> — кожен кейс відкривається як інтерактивний міні-сайт у модальному вікні браузера.
       </p>
     </div>
 
@@ -525,45 +556,168 @@
     </div>
   </section>
 
-  <!-- SECTION: REVIEWS -->
+  <!-- SECTION: REVIEWS (СЛАЙДЕР З 8 ВІДГУКАМИ ТА ГОРТАННЯМ В БІК) -->
   <section id="reviews" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-brandBorder">
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandLime/10 border border-brandLime/30 text-xs font-mono text-brandLime">
-        <span>// ВІДГУКИ СТУДЕНТІВ</span>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandLime/10 border border-brandLime/30 text-xs font-mono text-brandLime">
+          <span>// ВІДГУКИ СТУДЕНТІВ</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black font-heading uppercase text-white mt-2">
+          ЩО КАЖУТЬ <span class="text-brandLime">ВИПУСКНИКИ</span>
+        </h2>
       </div>
-      <h2 class="text-3xl sm:text-5xl font-black font-heading uppercase text-white">
-        ЩО КАЖУТЬ <span class="text-brandLime">ВИПУСКНИКИ</span>
-      </h2>
+
+      <!-- Кнопки керування слайдером -->
+      <div class="flex items-center gap-3">
+        <button onclick="scrollReviews('left')" class="w-12 h-12 rounded-2xl bg-brandSurface border border-white/10 hover:border-brandLime text-white hover:text-brandLime flex items-center justify-center transition-all">
+          ←
+        </button>
+        <button onclick="scrollReviews('right')" class="w-12 h-12 rounded-2xl bg-brandSurface border border-white/10 hover:border-brandLime text-white hover:text-brandLime flex items-center justify-center transition-all">
+          →
+        </button>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4">
-        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-          «300 грн за 1.5 години — найкраща інвестиція. Прокачала Illustrator для принтів та упаковки за місяць.»
-        </p>
+    <!-- Scroll Container -->
+    <div id="reviewsTrack" class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-6 pt-2">
+      
+      <!-- Review 1 -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Індивідуальні</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «300 грн за 1.5 години — найкраща інвестиція. Прокачала Illustrator для принтів та упаковки за місяць. Жодної води, тільки робота з реальними макетами.»
+          </p>
+        </div>
         <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brandLime text-black font-heading font-black flex items-center justify-center">ОМ</div>
-          <div><div class="text-xs font-bold text-white">Ольга Мельник</div><div class="text-[11px] text-neutral-400">Brand Designer</div></div>
+          <div class="w-10 h-10 rounded-full bg-brandLime text-black font-heading font-black flex items-center justify-center text-xs">ОМ</div>
+          <div><div class="text-xs font-bold text-white">Ольга Мельник</div><div class="text-[11px] text-neutral-400">Brand Designer (Freelance)</div></div>
         </div>
       </div>
-      <div class="p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4">
-        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-          «Пройшов курс на 4 місяці. Ніякої води, тільки Illustrator, Photoshop і Figma. Оформив 3 серйозні кейси на Behance.»
-        </p>
+
+      <!-- Review 2 -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Група 4 міс.</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «Пройшов курс на 4 місяці. Ніякої води, тільки Illustrator, Photoshop і Figma. Оформив 3 серйозні кейси на Behance та вже взяв перші два комерційні логотипи.»
+          </p>
+        </div>
         <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-white text-black font-heading font-black flex items-center justify-center">ВК</div>
+          <div class="w-10 h-10 rounded-full bg-white text-black font-heading font-black flex items-center justify-center text-xs">ВК</div>
           <div><div class="text-xs font-bold text-white">Владислав Козаченко</div><div class="text-[11px] text-neutral-400">Junior Graphic Designer</div></div>
         </div>
       </div>
-      <div class="p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4">
-        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-          «2-місячний інтенсив дав шалений результат: навчили вирівнювати шрифти та коректно вивантажувати макети у вектор.»
-        </p>
+
+      <!-- Review 3 -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Група 2 міс.</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «2-місячний інтенсив дав шалений результат: навчили вирівнювати шрифти, тримати швейцарську модульну сітку та коректно вивантажувати макети у вектор.»
+          </p>
+        </div>
         <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brandLime text-black font-heading font-black flex items-center justify-center">ЯД</div>
+          <div class="w-10 h-10 rounded-full bg-brandLime text-black font-heading font-black flex items-center justify-center text-xs">ЯД</div>
           <div><div class="text-xs font-bold text-white">Ярина Данилюк</div><div class="text-[11px] text-neutral-400">Маркетолог</div></div>
         </div>
       </div>
+
+      <!-- Review 4 (New) -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Індивідуальні</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «Прийшов розібратися саме з підготовкою до друку у типографії. Куратор на живому екрані розібрав колірні профілі CMYK, вильоти під обріз та векторні ножі для плотера. Топ!»
+          </p>
+        </div>
+        <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white text-black font-heading font-black flex items-center justify-center text-xs">АТ</div>
+          <div><div class="text-xs font-bold text-white">Артем Ткаченко</div><div class="text-[11px] text-neutral-400">Pre-press фахівець</div></div>
+        </div>
+      </div>
+
+      <!-- Review 5 (New) -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Група 4 міс.</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «Найсильніша частина курсу — автолейаути, змінні у Figma та верстка айдентики. Раніше все рухала руками навмання, тепер проєкти збираються як модульний конструктор.»
+          </p>
+        </div>
+        <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brandLime text-black font-heading font-black flex items-center justify-center text-xs">КБ</div>
+          <div><div class="text-xs font-bold text-white">Катерина Білоус</div><div class="text-[11px] text-neutral-400">UI Designer</div></div>
+        </div>
+      </div>
+
+      <!-- Review 6 (New) -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Консультація</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «Брав консультацію проєкту перед презентацією замовнику. За 2 години вичистили відступи, поправили типографіку та зібрали мокапи так, що клієнт погодив концепт з першого разу.»
+          </p>
+        </div>
+        <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white text-black font-heading font-black flex items-center justify-center text-xs">МС</div>
+          <div><div class="text-xs font-bold text-white">Максим Савчук</div><div class="text-[11px] text-neutral-400">Art Director</div></div>
+        </div>
+      </div>
+
+      <!-- Review 7 (New) -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Група 2 міс.</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «Сподобався суворий фідбек куратора: якщо композиція розвалюється — тобі прямо пояснюють чому, а не просто гладять по голові. Дуже швидко ростеш.»
+          </p>
+        </div>
+        <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brandLime text-black font-heading font-black flex items-center justify-center text-xs">ДР</div>
+          <div><div class="text-xs font-bold text-white">Діана Романова</div><div class="text-[11px] text-neutral-400">SMM Designer</div></div>
+        </div>
+      </div>
+
+      <!-- Review 8 (New) -->
+      <div class="min-w-[300px] sm:min-w-[380px] snap-start p-6 rounded-3xl bg-brandSurface border border-white/10 flex flex-col justify-between space-y-4 hover:border-brandLime/50 transition-all">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-brandLime">★★★★★</span>
+            <span class="font-mono text-neutral-400">Індивідуальні</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            «Починав зовсім з нуля, боявся відкривати Illustrator. На індивідуальних заняттях усе пояснюється простою людською мовою на конкретних логотипах. Дякую!»
+          </p>
+        </div>
+        <div class="pt-4 border-t border-brandBorder flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white text-black font-heading font-black flex items-center justify-center text-xs">ІП</div>
+          <div><div class="text-xs font-bold text-white">Ігор Пономаренко</div><div class="text-[11px] text-neutral-400">Студент</div></div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -596,10 +750,18 @@
               <label class="block text-[11px] font-mono text-neutral-400 mb-1">ВАШЕ ІМ'Я</label>
               <input type="text" id="contactName" required placeholder="Олександр" class="w-full px-4 py-3 bg-brandSurface border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-brandLime">
             </div>
+
             <div>
-              <label class="block text-[11px] font-mono text-neutral-400 mb-1">НОМЕР ТЕЛЕФОНУ (АБО TELEGRAM)</label>
-              <input type="text" id="contactPhone" required value="+380" class="w-full px-4 py-3 bg-brandSurface border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-brandLime font-mono">
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-[11px] font-mono text-neutral-400">НОМЕР ТЕЛЕФОНУ (ОБОВ'ЯЗКОВО)</label>
+                <span class="text-[10px] font-mono text-red-400 font-bold">* обов'язкове поле</span>
+              </div>
+              <input type="text" id="contactPhone" required value="+380" placeholder="+380XXXXXXXXX" class="w-full px-4 py-3 bg-brandSurface border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-brandLime font-mono">
+              <div id="phoneErrorHint" class="text-[10px] font-mono text-red-400 mt-1.5 hidden flex items-center gap-1">
+                <span>⚠️</span> <span>Без дійсного номера телефону відправка неможлива. Введіть коректний номер!</span>
+              </div>
             </div>
+
             <div>
               <label class="block text-[11px] font-mono text-neutral-400 mb-1">ОБЕРІТЬ ПАКЕТ</label>
               <select id="contactPackageSelect" class="w-full px-4 py-3 bg-brandSurface border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-brandLime">
@@ -609,11 +771,13 @@
                 <option value="Консультація проєкту">Консультація проєкту (від 1 500 ₴)</option>
               </select>
             </div>
+
             <div>
               <label class="block text-[11px] font-mono text-neutral-400 mb-1">КОМЕНТАР (НЕОБОВ'ЯЗКОВО)</label>
               <textarea id="contactComment" rows="2" class="w-full px-4 py-3 bg-brandSurface border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-brandLime"></textarea>
             </div>
-            <button type="submit" id="submitBtn" class="w-full py-4 bg-brandLime text-black font-heading font-black text-xs uppercase tracking-wider rounded-xl hover:bg-white transition-all">
+
+            <button type="submit" id="submitBtn" class="w-full py-4 bg-brandLime text-black font-heading font-black text-xs uppercase tracking-wider rounded-xl hover:bg-white transition-all shadow-[0_0_15px_#ccff00]">
               Записатися на потік
             </button>
           </form>
@@ -625,11 +789,20 @@
   <!-- FOOTER -->
   <footer class="border-t border-brandBorder bg-black py-10 px-4 sm:px-6 lg:px-8 relative z-10 text-neutral-500 text-xs">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-1.5">
+      
+      <!-- Logo Footer -->
+      <div class="flex items-center gap-3">
+        <div class="h-6 w-auto text-brandLime">
+          <svg class="h-full w-auto fill-current" viewBox="0 0 100 80">
+            <rect x="10" y="2" width="20" height="20"/>
+            <polygon points="10,32 30,22 30,78 10,78"/>
+            <polygon points="32,78 54,42 74,78 96,78 68,36 94,2 72,2 52,38 32,2 32,24 44,42 32,60"/>
+          </svg>
+        </div>
         <span class="font-heading font-black text-xl text-white">format</span>
-        <span class="font-heading font-black text-xl text-brandLime">ix</span>
         <span class="text-[11px] text-neutral-600 ml-2">© 2026. НАВЧАННЯ ГРАФІЧНОГО ДИЗАЙНУ.</span>
       </div>
+
       <div class="flex items-center gap-6 font-mono text-xs">
         <a href="tel:+380676665823" class="text-white hover:text-brandLime font-bold">+380 (67) 666-58-23</a>
       </div>
@@ -680,20 +853,34 @@
     </div>
   </div>
 
-  <!-- MODAL: INTERACTIVE CASES -->
+  <!-- MODAL: INTERACTIVE CASES (З ЛОГОТИПОМ У ВЕРХНЬОМУ БАРІ) -->
   <div id="interactiveCaseModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
     <div class="bg-brandDark border border-brandLime/60 rounded-2xl sm:rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl lime-glow">
+      
+      <!-- Top Browser Bar -->
       <div class="h-12 bg-brandSurface border-b border-brandBorder px-4 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer" onclick="closeInteractiveCase()"></span>
           <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
           <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
         </div>
-        <div class="px-4 py-1 rounded-lg bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-400 flex items-center gap-2">
+
+        <!-- Центральна плашка URL з логотипом ix -->
+        <div class="px-4 py-1.5 rounded-lg bg-black/60 border border-white/10 text-[11px] font-mono text-neutral-400 flex items-center gap-2.5">
+          <!-- Логотип ix у браузерному рядку -->
+          <div class="h-3.5 w-auto text-brandLime shrink-0">
+            <svg class="h-full w-auto fill-current" viewBox="0 0 100 80">
+              <rect x="10" y="2" width="20" height="20"/>
+              <polygon points="10,32 30,22 30,78 10,78"/>
+              <polygon points="32,78 54,42 74,78 96,78 68,36 94,2 72,2 52,38 32,2 32,24 44,42 32,60"/>
+            </svg>
+          </div>
+          <span class="text-neutral-500">|</span>
           <span class="text-brandLime font-bold">🔒 https://</span>
           <span id="caseBrowserUrl" class="text-white">case.format-ix.local</span>
         </div>
-        <button onclick="closeInteractiveCase()" class="text-neutral-400 hover:text-white text-sm font-mono px-2 py-1">✕ Закрити</button>
+
+        <button onclick="closeInteractiveCase()" class="text-neutral-400 hover:text-white text-xs font-mono px-2 py-1">✕ Закрити</button>
       </div>
       <div id="interactiveCaseBody" class="p-4 sm:p-8 overflow-y-auto flex-1 bg-[#0b0b0e]"></div>
     </div>
@@ -756,6 +943,17 @@
       document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
       showToast(`Обрано: ${pkgName}`);
       setTimeout(() => document.getElementById('contactName').focus(), 500);
+    }
+
+    /* Скрол відгуків */
+    function scrollReviews(direction) {
+      const track = document.getElementById('reviewsTrack');
+      const cardWidth = 360;
+      if (direction === 'left') {
+        track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
     }
 
     window.addEventListener('keydown', (e) => {
@@ -1251,17 +1449,39 @@
       });
     }
 
-    /* TELEGRAM INTEGRATION */
+    /* TELEGRAM INTEGRATION ТА СУВОРА ВАЛІДАЦІЯ ТЕЛЕФОНУ */
     const TELEGRAM_BOT_TOKEN = "8719278603:AAHiGhP8nn_wlQC3Rd5E3hwjC26n0Ktlcpc";
     const TELEGRAM_CHAT_ID = "5187113490";
 
     async function handleContactSubmit(e) {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBtn');
-      const name = document.getElementById('contactName').value.trim();
-      const phone = document.getElementById('contactPhone').value.trim();
+      const nameInput = document.getElementById('contactName');
+      const phoneInput = document.getElementById('contactPhone');
+      const phoneErrorHint = document.getElementById('phoneErrorHint');
+
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
       const pkg = document.getElementById('contactPackageSelect').value;
       const comment = document.getElementById('contactComment').value.trim();
+
+      // Очищуємо цифри для перевірки
+      const digitsOnly = phone.replace(/\D/g, '');
+
+      // Перевірка: якщо номер не введено, залишився лише +380 або менше 10 цифр
+      if (!phone || phone === '+380' || digitsOnly.length < 10) {
+        phoneInput.classList.remove('border-white/10');
+        phoneInput.classList.add('border-red-500', 'bg-red-950/20');
+        phoneErrorHint.classList.remove('hidden');
+        phoneInput.focus();
+        showToast('⚠️ Помилка: Введіть номер телефону для зв\'язку!');
+        return;
+      }
+
+      // Якщо номер введено коректно — знімаємо червоні рамки
+      phoneInput.classList.remove('border-red-500', 'bg-red-950/20');
+      phoneInput.classList.add('border-white/10');
+      phoneErrorHint.classList.add('hidden');
 
       submitBtn.disabled = true;
       submitBtn.innerText = "Відправка...";
@@ -1278,7 +1498,7 @@
         console.warn('Помилка відправки в Telegram:', err);
       }
 
-      showToast(`⚡ Дякуємо, ${name}! Заявку прийнято.`);
+      showToast(`⚡ Дякуємо, ${name}! Заявку прийнято. Номер: ${phone}`);
       e.target.reset();
       document.getElementById('contactPhone').value = "+380";
       submitBtn.disabled = false;
@@ -1293,7 +1513,7 @@
       setTimeout(() => {
         toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
         toast.classList.remove('opacity-100', 'translate-y-0');
-      }, 3000);
+      }, 3500);
     }
 
     /* Ambient Canvas */
